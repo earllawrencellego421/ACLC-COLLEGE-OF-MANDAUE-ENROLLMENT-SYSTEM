@@ -1,0 +1,759 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Earl Lawrence L. Llego - Digital Portfolio</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap');
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: #000000;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* Dynamic Background Effects */
+        .bg-gradient {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(ellipse at top, #1a1a2e 0%, #000000 50%);
+            z-index: 0;
+        }
+
+        .floating-shapes {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            z-index: 1;
+        }
+
+        .shape {
+            position: absolute;
+            background: linear-gradient(135deg, rgba(0, 255, 255, 0.1), rgba(147, 51, 234, 0.1));
+            border-radius: 50%;
+            filter: blur(60px);
+            animation: float-around 20s infinite ease-in-out;
+        }
+
+        .shape:nth-child(1) {
+            width: 400px;
+            height: 400px;
+            top: -100px;
+            left: -100px;
+            animation-delay: 0s;
+        }
+
+        .shape:nth-child(2) {
+            width: 350px;
+            height: 350px;
+            bottom: -80px;
+            right: -80px;
+            animation-delay: 7s;
+        }
+
+        .shape:nth-child(3) {
+            width: 300px;
+            height: 300px;
+            top: 40%;
+            left: 50%;
+            animation-delay: 14s;
+        }
+
+        @keyframes float-around {
+            0%, 100% { transform: translate(0, 0) rotate(0deg); }
+            25% { transform: translate(30px, -40px) rotate(90deg); }
+            50% { transform: translate(-20px, 30px) rotate(180deg); }
+            75% { transform: translate(40px, 20px) rotate(270deg); }
+        }
+
+        /* Grid Pattern Overlay */
+        body::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background-image: 
+                linear-gradient(rgba(0, 255, 255, 0.03) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(0, 255, 255, 0.03) 1px, transparent 1px);
+            background-size: 40px 40px;
+            z-index: 1;
+            pointer-events: none;
+        }
+
+        .container {
+            max-width: 1100px;
+            width: 100%;
+            position: relative;
+            z-index: 10;
+        }
+
+        .profile-card {
+            background: rgba(10, 10, 15, 0.85);
+            backdrop-filter: blur(30px);
+            border-radius: 30px;
+            overflow: hidden;
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            box-shadow: 
+                0 30px 90px rgba(0, 0, 0, 0.7),
+                0 0 80px rgba(0, 255, 255, 0.05);
+            display: grid;
+            grid-template-columns: 1fr;
+            position: relative;
+        }
+
+        /* Animated border glow */
+        .profile-card::before {
+            content: '';
+            position: absolute;
+            inset: -2px;
+            background: linear-gradient(45deg, #00ffff, #9333ea, #00ffff, #9333ea);
+            background-size: 300% 300%;
+            border-radius: 30px;
+            z-index: -1;
+            animation: gradient-rotate 6s linear infinite;
+            opacity: 0.4;
+        }
+
+        @keyframes gradient-rotate {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        @media (min-width: 900px) {
+            .profile-card {
+                grid-template-columns: 380px 1fr;
+            }
+        }
+
+        /* Left Panel */
+        .profile-sidebar {
+            background: linear-gradient(180deg, rgba(0, 15, 25, 0.9) 0%, rgba(5, 10, 20, 0.95) 100%);
+            padding: 50px 30px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            position: relative;
+        }
+
+        @media (min-width: 900px) {
+            .profile-sidebar {
+                border-bottom: none;
+                border-right: 1px solid rgba(255, 255, 255, 0.05);
+            }
+        }
+
+        /* Profile Picture Container */
+        .avatar-container {
+            position: relative;
+            margin-bottom: 30px;
+        }
+
+        .avatar-ring {
+            position: relative;
+            width: 180px;
+            height: 180px;
+        }
+
+        .avatar-ring::before {
+            content: '';
+            position: absolute;
+            inset: -4px;
+            background: conic-gradient(from 0deg, #00ffff, #9333ea, #00ffff);
+            border-radius: 50%;
+            animation: spin 4s linear infinite;
+            z-index: 0;
+        }
+
+        @keyframes spin {
+            100% { transform: rotate(360deg); }
+        }
+
+        .avatar-ring::after {
+            content: '';
+            position: absolute;
+            inset: -4px;
+            background: conic-gradient(from 180deg, transparent 50%, rgba(0, 255, 255, 0.3));
+            border-radius: 50%;
+            animation: spin 3s linear infinite reverse;
+            z-index: 1;
+        }
+
+        .avatar-img {
+            width: 180px;
+            height: 180px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 6px solid rgba(10, 10, 15, 0.9);
+            position: relative;
+            z-index: 2;
+        }
+
+        .status-indicator {
+            position: absolute;
+            bottom: 15px;
+            right: 15px;
+            width: 24px;
+            height: 24px;
+            background: linear-gradient(135deg, #00ff88, #00cc66);
+            border-radius: 50%;
+            border: 4px solid rgba(10, 10, 15, 0.9);
+            box-shadow: 0 0 20px rgba(0, 255, 136, 0.6);
+            z-index: 3;
+            animation: heartbeat 2s infinite;
+        }
+
+        @keyframes heartbeat {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.15); }
+        }
+
+        /* Name & Title */
+        .profile-header {
+            text-align: center;
+            margin-bottom: 35px;
+        }
+
+        .profile-name {
+            font-size: 28px;
+            font-weight: 800;
+            background: linear-gradient(135deg, #ffffff 0%, #00ffff 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 10px;
+            letter-spacing: -0.5px;
+        }
+
+        .profile-title {
+            font-size: 13px;
+            font-weight: 600;
+            color: #00ffff;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            position: relative;
+            display: inline-block;
+            padding: 0 15px;
+        }
+
+        .profile-title::before,
+        .profile-title::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            width: 30px;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, #00ffff);
+        }
+
+        .profile-title::before { left: -35px; }
+        .profile-title::after { 
+            right: -35px;
+            background: linear-gradient(90deg, #00ffff, transparent);
+        }
+
+        /* Info Cards */
+        .info-section {
+            width: 100%;
+            margin-bottom: 30px;
+        }
+
+        .info-card {
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            border-radius: 14px;
+            padding: 14px 18px;
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            cursor: pointer;
+        }
+
+        .info-card:hover {
+            background: rgba(0, 255, 255, 0.05);
+            border-color: rgba(0, 255, 255, 0.2);
+            transform: translateX(8px);
+        }
+
+        .info-icon {
+            width: 40px;
+            height: 40px;
+            background: linear-gradient(135deg, #00ffff, #9333ea);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 16px;
+            color: #000;
+            flex-shrink: 0;
+        }
+
+        .info-content {
+            flex: 1;
+        }
+
+        .info-label {
+            font-size: 9px;
+            color: #6b7280;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 3px;
+            font-weight: 600;
+        }
+
+        .info-text {
+            font-size: 13px;
+            color: #e5e7eb;
+            font-weight: 500;
+        }
+
+        /* Social Links */
+        .social-section {
+            display: flex;
+            gap: 14px;
+            justify-content: center;
+        }
+
+        .social-link {
+            width: 50px;
+            height: 50px;
+            border-radius: 14px;
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #94a3b8;
+            text-decoration: none;
+            font-size: 20px;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .social-link::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(135deg, #00ffff, #9333ea);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .social-link i {
+            position: relative;
+            z-index: 1;
+        }
+
+        .social-link:hover {
+            transform: translateY(-5px) scale(1.1);
+            border-color: transparent;
+            box-shadow: 0 15px 35px rgba(0, 255, 255, 0.3);
+        }
+
+        .social-link:hover::before {
+            opacity: 1;
+        }
+
+        .social-link:hover i {
+            color: #000;
+        }
+
+        /* Right Panel */
+        .profile-content {
+            padding: 50px 40px;
+        }
+
+        @media (max-width: 899px) {
+            .profile-content {
+                padding: 40px 30px;
+            }
+        }
+
+        /* Section Headers */
+        .content-section {
+            margin-bottom: 40px;
+        }
+
+        .section-header {
+            font-size: 11px;
+            font-weight: 700;
+            color: #00ffff;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .section-header i {
+            font-size: 14px;
+        }
+
+        .section-header::after {
+            content: '';
+            flex: 1;
+            height: 2px;
+            background: linear-gradient(90deg, rgba(0, 255, 255, 0.4), transparent);
+        }
+
+        /* Bio Section */
+        .bio-container {
+            background: linear-gradient(135deg, rgba(0, 255, 255, 0.03), rgba(147, 51, 234, 0.03));
+            border: 1px solid rgba(0, 255, 255, 0.1);
+            border-left: 4px solid #00ffff;
+            border-radius: 16px;
+            padding: 28px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .bio-container::before {
+            content: '"';
+            position: absolute;
+            top: 15px;
+            left: 15px;
+            font-size: 70px;
+            color: rgba(0, 255, 255, 0.1);
+            font-family: Georgia, serif;
+            line-height: 1;
+        }
+
+        .bio-text {
+            font-size: 15px;
+            line-height: 1.9;
+            color: #cbd5e1;
+            white-space: pre-line;
+            font-style: italic;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* Stats Grid */
+        .stats-container {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 16px;
+        }
+
+        @media (max-width: 450px) {
+            .stats-container {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .stat-box {
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            border-radius: 16px;
+            padding: 24px 20px;
+            text-align: center;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .stat-box::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(135deg, rgba(0, 255, 255, 0.05), rgba(147, 51, 234, 0.05));
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .stat-box:hover {
+            transform: translateY(-8px);
+            border-color: rgba(0, 255, 255, 0.3);
+            box-shadow: 0 15px 40px rgba(0, 255, 255, 0.15);
+        }
+
+        .stat-box:hover::before {
+            opacity: 1;
+        }
+
+        .stat-icon {
+            font-size: 28px;
+            background: linear-gradient(135deg, #00ffff, #9333ea);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 12px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .stat-value {
+            font-size: 24px;
+            font-weight: 800;
+            color: #ffffff;
+            margin-bottom: 6px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .stat-label {
+            font-size: 11px;
+            color: #64748b;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-weight: 600;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* Responsive Adjustments */
+        @media (max-width: 768px) {
+            body {
+                padding: 15px;
+            }
+
+            .profile-card {
+                border-radius: 24px;
+            }
+
+            .profile-sidebar {
+                padding: 40px 25px;
+            }
+
+            .avatar-ring,
+            .avatar-img {
+                width: 150px;
+                height: 150px;
+            }
+
+            .profile-name {
+                font-size: 24px;
+            }
+
+            .profile-title {
+                font-size: 12px;
+            }
+
+            .profile-content {
+                padding: 35px 25px;
+            }
+
+            .bio-container {
+                padding: 24px;
+            }
+
+            .bio-text {
+                font-size: 14px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            body {
+                padding: 10px;
+            }
+
+            .profile-card {
+                border-radius: 20px;
+            }
+
+            .profile-sidebar {
+                padding: 30px 20px;
+            }
+
+            .avatar-ring,
+            .avatar-img {
+                width: 130px;
+                height: 130px;
+            }
+
+            .status-indicator {
+                width: 20px;
+                height: 20px;
+                bottom: 10px;
+                right: 10px;
+            }
+
+            .profile-name {
+                font-size: 22px;
+            }
+
+            .profile-title {
+                font-size: 11px;
+                letter-spacing: 1.5px;
+            }
+
+            .info-card {
+                padding: 12px 15px;
+            }
+
+            .info-icon {
+                width: 36px;
+                height: 36px;
+                font-size: 14px;
+            }
+
+            .social-link {
+                width: 46px;
+                height: 46px;
+                font-size: 18px;
+            }
+
+            .profile-content {
+                padding: 30px 20px;
+            }
+
+            .bio-container {
+                padding: 20px;
+            }
+
+            .bio-container::before {
+                font-size: 50px;
+            }
+
+            .bio-text {
+                font-size: 13px;
+                line-height: 1.8;
+            }
+
+            .stat-box {
+                padding: 20px 16px;
+            }
+
+            .stat-icon {
+                font-size: 24px;
+            }
+
+            .stat-value {
+                font-size: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="bg-gradient"></div>
+    <div class="floating-shapes">
+        <div class="shape"></div>
+        <div class="shape"></div>
+        <div class="shape"></div>
+    </div>
+
+    <div class="container">
+        <div class="profile-card">
+            <!-- Left Sidebar -->
+            <div class="profile-sidebar">
+                <div class="avatar-container">
+                    <div class="avatar-ring">
+                        <img class="avatar-img" src="https://scontent.fmnl4-1.fna.fbcdn.net/v/t39.30808-1/607425076_2671916533161267_9150097217470862320_n.jpg?stp=dst-jpg_s200x200_tt6&_nc_cat=103&ccb=1-7&_nc_sid=1d2534&_nc_eui2=AeFapQlktccuad3RoSfKdF2CCkZuxvIvUCIKRm7G8i9QIm-X4c9wYa38ycEZH3zUPM9qYus3cmd22Gq0gv8W-clJ&_nc_ohc=Wnj4VvHCmzkQ7kNvwEPju_q&_nc_oc=AdqUk8ejK7ZKs10l4iUcVUBgTDaE7vuC1kIrmmhwrJhaZDrvF2I2NDmMWnLP0Htp0jJPalam7aaaDqXoEcVlim82&_nc_zt=24&_nc_ht=scontent.fmnl4-1.fna&_nc_gid=q3qJ0f7vCqPv2QpGdpMwLQ&_nc_ss=7a3a8&oh=00_Af1UuaMlfjjHEZlVjsva6MJo5p3Gff8jhuzAGEPj41Zthg&oe=69D6E870" alt="Earl Lawrence L. Llego">
+                        <div class="status-indicator"></div>
+                    </div>
+                </div>
+
+                <div class="profile-header">
+                    <h1 class="profile-name">Earl Lawrence L. Llego</h1>
+                    <div class="profile-title">Digital Innovator</div>
+                </div>
+
+                <div class="info-section">
+                    <div class="info-card">
+                        <div class="info-icon">
+                            <i class="fas fa-graduation-cap"></i>
+                        </div>
+                        <div class="info-content">
+                            <div class="info-label">Academic Path</div>
+                            <div class="info-text">Bachelor of Science in IT</div>
+                        </div>
+                    </div>
+
+                    <div class="info-card">
+                        <div class="info-icon">
+                            <i class="fas fa-university"></i>
+                        </div>
+                        <div class="info-content">
+                            <div class="info-label">Institution</div>
+                            <div class="info-text">ACLC College, Mandaue</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="social-section">
+                    <a href="https://www.facebook.com/renzllego73/" target="_blank" class="social-link">
+                        <i class="fab fa-facebook-f"></i>
+                    </a>
+                    <a href="https://www.instagram.com/lowrains73/?next=%2F" target="_blank" class="social-link">
+                        <i class="fab fa-instagram"></i>
+                    </a>
+                    <a href="https://www.tiktok.com/@lowrainsssss" target="_blank" class="social-link">
+                        <i class="fab fa-tiktok"></i>
+                    </a>
+                </div>
+            </div>
+
+            <!-- Right Content -->
+            <div class="profile-content">
+                <div class="content-section">
+                    <div class="section-header">
+                        <i class="fas fa-quote-left"></i>
+                        Journey & Vision
+                    </div>
+                    <div class="bio-container">
+                        <p class="bio-text">Within ACLC's corridors, my path unfolds,
+Where innovation meets discipline, stories told.
+Through algorithmic thinking and digital streams,
+I architect tomorrow with code and dreams.
+
+From Mandaue's foundation to the virtual expanse,
+I forge connections where technology and humanity dance.</p>
+                    </div>
+                </div>
+
+                <div class="content-section">
+                    <div class="section-header">
+                        <i class="fas fa-chart-line"></i>
+                        Core Competencies
+                    </div>
+                    <div class="stats-container">
+                        <div class="stat-box">
+                            <div class="stat-icon">
+                                <i class="fas fa-code"></i>
+                            </div>
+                            <div class="stat-value">Tech</div>
+                            <div class="stat-label">Discipline</div>
+                        </div>
+
+                        <div class="stat-box">
+                            <div class="stat-icon">
+                                <i class="fas fa-laptop-code"></i>
+                            </div>
+                            <div class="stat-value">Build</div>
+                            <div class="stat-label">Approach</div>
+                        </div>
+
+                        <div class="stat-box">
+                            <div class="stat-icon">
+                                <i class="fas fa-rocket"></i>
+                            </div>
+                            <div class="stat-value">2026</div>
+                            <div class="stat-label">Milestone</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,46 @@
+user admin
+password admin
+
+gynowgskjowrfudwetag project id
+
+
+earllawrencellego@gmail.com
+admin
+web 
+
+
+cd aclc-enrollment
+npx expo start
+
+Email: admin@aclc.com
+
+Password: admin123
+
+anon key
+eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imt1bmZ2cXNycnloanJiemxuZGdpIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzQzNTc3MDUsImV4cCI6MjA4OTkzMzcwNX0.KOlvQdBd-FTmrPv-1Zo8hw3ZJNouvEKeVs1ZPdEVWTo
+supabase url
+kunfvqsrryhjrbzlndgi
+
+project id
+oervqbmvvlsxbrthgajk
+
+database password
+XpKO0Hp5YpzHR7Ct
+
+
+
+host:
+aws-1-ap-northeast-1.pooler.supabase.com
+
+port:
+5432
+
+database:
+postgres
+
+user:
+postgres.kunfvqsrryhjrbzlndgi
+
+DELETE FROM students;
+
+npx expo start -c
